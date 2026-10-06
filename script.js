@@ -1,31 +1,31 @@
-// Organellen data voor de plantencel verdeeld over 3 niveaus
+// Organellen data met exacte coördinaten voor de ronde target-stippen
 const levelsData = [
   // Niveau 1: Basis organellen van een plantencel
   [
-    { id: 'celwand', name: 'Celwand', top: '3%', left: '42%' },
-    { id: 'celmembraan', name: 'Celmembraan', top: '10%', left: '8%' },
-    { id: 'cytoplasma', name: 'Cytoplasma', top: '88%', left: '60%' },
-    { id: 'vacuole', name: 'Vacuole', top: '48%', left: '56%' },
-    { id: 'celkern', name: 'Celkern', top: '42%', left: '16%' },
-    { id: 'chloroplast', name: 'Bladgroenkorrel', top: '15%', left: '68%' }
+    { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%' },       // Buitenste stevige groene wand
+    { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%' }, // Gele vliesje direct onder celwand
+    { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%' },   // Vloeistof linksonder
+    { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%' },         // Grote blauwe blaas in midden
+    { id: 'celkern', name: 'Celkern', top: '48%', left: '28%' },         // Paarse kern links
+    { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' } // Groen ovaaltje rechtsboven
   ],
   // Niveau 2: Medium complexiteit
   [
-    { id: 'mitochondrion', name: 'Mitochondrion', top: '64%', left: '72%' },
-    { id: 'er', name: 'Endoplasmatisch Reticulum', top: '32%', left: '2%' },
-    { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '68%' },
-    { id: 'ribosoom', name: 'Ribosoom', top: '32%', left: '34%' },
-    { id: 'chloroplast', name: 'Bladgroenkorrel', top: '15%', left: '68%' },
-    { id: 'vacuole', name: 'Vacuole', top: '48%', left: '56%' }
+    { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%' },
+    { id: 'er', name: 'Endoplasmatisch Reticulum', top: '36%', left: '12%' },
+    { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%' },
+    { id: 'ribosoom', name: 'Ribosoom', top: '35%', left: '35%' },
+    { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' },
+    { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%' }
   ],
   // Niveau 3: Alle specifieke plantenorganellen
   [
-    { id: 'nucleolus', name: 'Nucleolus', top: '38%', left: '25%' },
-    { id: 'peroxisoom', name: 'Peroxisoom', top: '14%', left: '35%' },
-    { id: 'amyloplast', name: 'Amyloplast', top: '78%', left: '10%' },
-    { id: 'celwand', name: 'Celwand', top: '3%', left: '42%' },
-    { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '68%' },
-    { id: 'mitochondrion', name: 'Mitochondrion', top: '64%', left: '72%' }
+    { id: 'nucleolus', name: 'Nucleolus', top: '43%', left: '23%' },
+    { id: 'peroxisoom', name: 'Peroxisoom', top: '18%', left: '38%' },
+    { id: 'amyloplast', name: 'Amyloplast', top: '79%', left: '15%' },
+    { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%' },
+    { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%' },
+    { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%' }
   ]
 ];
 
@@ -75,16 +75,16 @@ function loadLevel(levelIdx) {
   levelDisplay.textContent = `${levelIdx + 1} / ${levelsData.length}`;
   updateProgress();
 
-  setFeedback('Kies een organelnaam en sleep of klik op het juiste vakje!', '');
+  setFeedback('Kies een organelnaam en plaats deze op het juiste rondje!', '');
 
-  // Dropzones aanmaken
+  // Dropzones aanmaken als kleine cirkels
   currentItems.forEach(item => {
     const zone = document.createElement('div');
     zone.classList.add('drop-zone');
     zone.style.top = item.top;
     zone.style.left = item.left;
     zone.dataset.id = item.id;
-    zone.textContent = '???';
+    zone.textContent = '?';
 
     // Drag & Drop events
     zone.addEventListener('dragover', e => e.preventDefault());
@@ -92,13 +92,13 @@ function loadLevel(levelIdx) {
     zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
     zone.addEventListener('drop', handleDrop);
 
-    // Klik functionaliteit (voor mobiel/touch)
+    // Klik functionaliteit (voor touch/mobiel)
     zone.addEventListener('click', () => handleZoneClick(zone));
 
     dropZonesContainer.appendChild(zone);
   });
 
-  // Labels schudden (random volgorde)
+  // Labels schudden
   const shuffledItems = [...currentItems].sort(() => Math.random() - 0.5);
 
   shuffledItems.forEach(item => {
@@ -122,14 +122,12 @@ function loadLevel(levelIdx) {
   });
 }
 
-// Selectie markeren (voor klikken)
 function highlightSelectedLabel(label) {
   document.querySelectorAll('.draggable-label').forEach(l => l.classList.remove('selected'));
   selectedLabel = label;
   label.classList.add('selected');
 }
 
-// Drop afhandelen
 function handleDrop(e) {
   e.preventDefault();
   const zone = e.currentTarget;
@@ -139,17 +137,15 @@ function handleDrop(e) {
   checkMatch(draggedId, zone);
 }
 
-// Klik afhandelen
 function handleZoneClick(zone) {
   if (zone.classList.contains('filled')) return;
   if (!selectedLabel) {
-    setFeedback('Selecteer eerst een organelnaam uit de rechterlijst!', 'wrong');
+    setFeedback('Selecteer eerst een organelnaam uit de lijst rechts!', 'wrong');
     return;
   }
   checkMatch(selectedLabel.dataset.id, zone);
 }
 
-// Controleer of de gekozen naam bij de zone hoort
 function checkMatch(labelId, zone) {
   if (zone.classList.contains('filled')) return;
 
@@ -157,11 +153,11 @@ function checkMatch(labelId, zone) {
   const matchedItem = currentItems.find(i => i.id === labelId);
 
   if (labelId === targetId) {
-    // Goed!
-    zone.textContent = matchedItem.name;
+    // Goed antwoord!
+    zone.textContent = '✓ ' + matchedItem.name;
     zone.classList.add('filled');
-    
-    // Schakel label uit
+
+    // Deactiveer het label in het overzicht
     const labelEl = Array.from(document.querySelectorAll('.draggable-label')).find(l => l.dataset.id === labelId && !l.classList.contains('disabled'));
     if (labelEl) {
       labelEl.classList.add('disabled');
@@ -174,18 +170,18 @@ function checkMatch(labelId, zone) {
     scoreDisplay.textContent = score;
     completedCount++;
 
-    setFeedback(`Goed zo! Dat is inderdaad de ${matchedItem.name}.`, 'correct');
+    setFeedback(`Uitstekend! Dat is inderdaad de ${matchedItem.name}.`, 'correct');
     updateProgress();
 
     if (completedCount === currentItems.length) {
-      setFeedback('🎉 Super! Je hebt alle organellen in dit niveau correct aangewezen!', 'correct');
+      setFeedback('🎉 Super! Je hebt alle organellen in dit niveau geplaatst!', 'correct');
       nextBtn.disabled = false;
     }
   } else {
-    // Fout!
+    // Fout antwoord
     score = Math.max(0, score - 2);
     scoreDisplay.textContent = score;
-    setFeedback('Helaas, dat is niet de juiste plek. Probeer het nog eens!', 'wrong');
+    setFeedback('Dat is niet het juiste rondje voor dit organel. Probeer het opnieuw!', 'wrong');
   }
 }
 
@@ -222,5 +218,4 @@ function showEndModal(customTitle) {
   endModal.style.display = 'flex';
 }
 
-// Start het spel bij laden
 window.addEventListener('DOMContentLoaded', initGame);

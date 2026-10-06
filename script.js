@@ -1,20 +1,20 @@
-// Organellen data met exacte coördinaten voor de ronde target-stippen
+// Organellen data met nauwkeurige coördinaten voor de target-stippen
 const levelsData = [
   // Niveau 1: Basis organellen van een plantencel
   [
-    { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%' },       // Buitenste stevige groene wand
-    { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%' }, // Gele vliesje direct onder celwand
-    { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%' },   // Vloeistof linksonder
-    { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%' },         // Grote blauwe blaas in midden
-    { id: 'celkern', name: 'Celkern', top: '48%', left: '28%' },         // Paarse kern links
-    { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' } // Groen ovaaltje rechtsboven
+    { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%' },
+    { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%' },
+    { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%' },
+    { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%' },
+    { id: 'celkern', name: 'Celkern', top: '48%', left: '28%' },
+    { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' }
   ],
-  // Niveau 2: Medium complexiteit
+  // Niveau 2: Medium complexiteit (ER en Ribosoom zijn hier haarscherp gescheiden)
   [
+    { id: 'er', name: 'Endoplasmatisch Reticulum', top: '46%', left: '11%' }, // Wijst naar de oranje membraanbanen
+    { id: 'ribosoom', name: 'Ribosoom', top: '39%', left: '36%' },            // Wijst direct naar een rood bolletje
     { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%' },
-    { id: 'er', name: 'Endoplasmatisch Reticulum', top: '36%', left: '12%' },
     { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%' },
-    { id: 'ribosoom', name: 'Ribosoom', top: '35%', left: '35%' },
     { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' },
     { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%' }
   ],

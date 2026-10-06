@@ -1,18 +1,18 @@
-// Organellen data met nauwkeurige coördinaten voor de target-stippen
+// Target stippen met exacte locaties voor de plantencel
 const levelsData = [
-  // Niveau 1: Basis organellen van een plantencel
+  // Niveau 1: Basis organellen
   [
     { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%' },
     { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%' },
     { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%' },
     { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%' },
-    { id: 'celkern', name: 'Celkern', top: '48%', left: '28%' },
+    { id: 'celkern', name: 'Celkern', top: '45%', left: '25%' },
     { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' }
   ],
-  // Niveau 2: Medium complexiteit (ER en Ribosoom zijn hier haarscherp gescheiden)
+  // Niveau 2: Scherp onderscheid tussen ER (geel vlies) en Ribosoom (zwarte stip)
   [
-    { id: 'er', name: 'Endoplasmatisch Reticulum', top: '46%', left: '11%' }, // Wijst naar de oranje membraanbanen
-    { id: 'ribosoom', name: 'Ribosoom', top: '39%', left: '36%' },            // Wijst direct naar een rood bolletje
+    { id: 'er', name: 'Endoplasmatisch Reticulum', top: '60%', left: '17%' }, // Wijst direct naar het gele geplooide vlies
+    { id: 'ribosoom', name: 'Ribosoom', top: '56%', left: '36%' },            // Wijst exact naar een zwart stipje op het ER
     { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%' },
     { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%' },
     { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%' },
@@ -22,7 +22,7 @@ const levelsData = [
   [
     { id: 'nucleolus', name: 'Nucleolus', top: '43%', left: '23%' },
     { id: 'peroxisoom', name: 'Peroxisoom', top: '18%', left: '38%' },
-    { id: 'amyloplast', name: 'Amyloplast', top: '79%', left: '15%' },
+    { id: 'amyloplast', name: 'Amyloplast', top: '81%', left: '14%' },
     { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%' },
     { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%' },
     { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%' }

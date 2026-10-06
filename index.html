@@ -51,9 +51,26 @@
           <circle cx="160" cy="220" r="60" class="svg-nucleus" />
           <circle cx="150" cy="210" r="22" class="svg-nucleolus" />
 
-          <!-- Endoplasmatisch Reticulum (Oranje/Roze golven) -->
-          <path d="M 110 150 Q 80 180 110 210 T 110 270" class="svg-er" />
-          <path d="M 210 150 Q 240 180 220 230 T 210 280" class="svg-er" />
+          <!-- Endoplasmatisch Reticulum (Brede geplooide membraanstraten om de kern) -->
+          <g class="svg-er-group">
+            <path d="M 105 140 Q 75 180 105 220 T 105 280 M 115 130 Q 80 180 115 230 T 115 290" class="svg-er" />
+            <path d="M 215 140 Q 245 180 225 230 T 215 280 M 225 130 Q 255 180 235 230 T 225 290" class="svg-er" />
+          </g>
+
+          <!-- Ribosomen (Duidelijke rode bolletjes op het ER en in cytoplasma) -->
+          <g class="svg-ribosomes-group">
+            <!-- Op het ER -->
+            <circle cx="85" cy="170" r="5.5" class="svg-ribosome" />
+            <circle cx="82" cy="200" r="5.5" class="svg-ribosome" />
+            <circle cx="88" cy="230" r="5.5" class="svg-ribosome" />
+            <circle cx="232" cy="160" r="5.5" class="svg-ribosome" />
+            <circle cx="238" cy="190" r="5.5" class="svg-ribosome" />
+            <circle cx="230" cy="220" r="5.5" class="svg-ribosome" />
+            <circle cx="225" cy="250" r="5.5" class="svg-ribosome" />
+            <!-- Vrij in het cytoplasma -->
+            <circle cx="120" cy="330" r="5.5" class="svg-ribosome" />
+            <circle cx="310" cy="100" r="5.5" class="svg-ribosome" />
+          </g>
 
           <!-- Bladgroenkorrels / Chloroplasten (Donkergroen met thylakoïden) -->
           <g class="svg-chloroplast-group">
@@ -85,12 +102,6 @@
 
           <!-- Peroxisoom -->
           <circle cx="250" cy="90" r="12" class="svg-peroxisome" />
-
-          <!-- Ribosomen -->
-          <circle cx="90" cy="180" r="3.5" class="svg-ribosome" />
-          <circle cx="95" cy="230" r="3.5" class="svg-ribosome" />
-          <circle cx="225" cy="160" r="3.5" class="svg-ribosome" />
-          <circle cx="230" cy="260" r="3.5" class="svg-ribosome" />
         </svg>
 
         <!-- Ronde Drop Zones -->

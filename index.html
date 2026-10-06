@@ -10,7 +10,7 @@
 
   <header>
     <h1>🌱 Cel-Trainer: Plantencel</h1>
-    <p>Sleep de juiste namen naar de vakjes op de plantencel (of klik op een naam en daarna op het vakje)!</p>
+    <p>Sleep de organellen naar de juiste cirkels op de cel (of klik eerst op een naam en daarna op een cirkel)!</p>
   </header>
 
   <div class="game-container">
@@ -28,7 +28,7 @@
 
     <!-- Feedback melding -->
     <div class="feedback-message" id="feedback-message">
-      Kies een organelnaam en sleep deze naar de juiste plek op de plantencel!
+      Kies een organelnaam en plaats deze op het juiste rondje in de plantencel!
     </div>
 
     <div class="main-play-area">
@@ -38,24 +38,24 @@
           <!-- Celwand (Buitenste stevige groene laag) -->
           <rect x="15" y="15" width="620" height="450" rx="35" class="svg-cell-wall" />
           
-          <!-- Celmembraan (Binnenste gele/lichtgroene rand) -->
+          <!-- Celmembraan (Binnenste gele rand) -->
           <rect x="30" y="30" width="590" height="420" rx="25" class="svg-cell-membrane" />
           
           <!-- Cytoplasma (Lichtgroene vloeistof) -->
           <rect x="40" y="40" width="570" height="400" rx="20" class="svg-cytoplasm" />
 
-          <!-- Grote Centrale Vacuole (Blauw, groot in het midden) -->
+          <!-- Grote Centrale Vacuole (Blauw) -->
           <path d="M 290 140 C 350 110, 520 130, 530 220 C 540 320, 480 400, 380 390 C 300 380, 260 300, 280 220 Z" class="svg-vacuole" />
 
-          <!-- Celkern & Nucleolus (Paars, links) -->
+          <!-- Celkern & Nucleolus (Paars) -->
           <circle cx="160" cy="220" r="60" class="svg-nucleus" />
           <circle cx="150" cy="210" r="22" class="svg-nucleolus" />
 
-          <!-- Endoplasmatisch Reticulum (Oranje/Roze golven om kern) -->
+          <!-- Endoplasmatisch Reticulum (Oranje/Roze golven) -->
           <path d="M 110 150 Q 80 180 110 210 T 110 270" class="svg-er" />
           <path d="M 210 150 Q 240 180 220 230 T 210 280" class="svg-er" />
 
-          <!-- Bladgroenkorrels / Chloroplasten (Donkergroen met interne lijntjes) -->
+          <!-- Bladgroenkorrels / Chloroplasten (Donkergroen met thylakoïden) -->
           <g class="svg-chloroplast-group">
             <ellipse cx="140" cy="90" rx="38" ry="20" class="svg-chloroplast" />
             <line x1="120" y1="90" x2="160" y2="90" class="svg-chloroplast-line" />
@@ -71,29 +71,29 @@
             <line x1="210" y1="410" x2="250" y2="410" class="svg-chloroplast-line" />
           </g>
 
-          <!-- Mitochondriën (Blauw/Rood ovaal met plooien) -->
+          <!-- Mitochondriën -->
           <g class="svg-mitochondria-group">
             <ellipse cx="480" cy="320" rx="35" ry="18" transform="rotate(-15 480 320)" class="svg-mitochondria" />
             <path d="M 455 320 Q 465 315 480 320 T 505 320" class="svg-mitochondria-inner" />
           </g>
 
-          <!-- Golgi-apparaat (Oranje gestapelde mappen, rechtsonder) -->
+          <!-- Golgi-apparaat -->
           <path d="M 430 390 C 450 380, 480 380, 500 390 M 432 398 C 452 388, 482 388, 502 398 M 435 406 C 455 396, 485 396, 505 406" class="svg-golgi" />
 
-          <!-- Amyloplast (Paars/grijze ovaal linksonder) -->
+          <!-- Amyloplast -->
           <ellipse cx="100" cy="380" rx="28" ry="18" class="svg-amyloplast" />
 
-          <!-- Peroxisoom (Geel bolletje) -->
+          <!-- Peroxisoom -->
           <circle cx="250" cy="90" r="12" class="svg-peroxisome" />
 
-          <!-- Ribosomen (Kleine stipjes) -->
-          <circle cx="90" cy="180" r="3" class="svg-ribosome" />
-          <circle cx="95" cy="230" r="3" class="svg-ribosome" />
-          <circle cx="225" cy="160" r="3" class="svg-ribosome" />
-          <circle cx="230" cy="260" r="3" class="svg-ribosome" />
+          <!-- Ribosomen -->
+          <circle cx="90" cy="180" r="3.5" class="svg-ribosome" />
+          <circle cx="95" cy="230" r="3.5" class="svg-ribosome" />
+          <circle cx="225" cy="160" r="3.5" class="svg-ribosome" />
+          <circle cx="230" cy="260" r="3.5" class="svg-ribosome" />
         </svg>
 
-        <!-- Drop Zones (Interactieve plekken op de kaart) -->
+        <!-- Ronde Drop Zones -->
         <div id="drop-zones-container"></div>
       </div>
 
@@ -104,7 +104,7 @@
       </div>
     </div>
 
-    <!-- Besturingsknoppen -->
+    <!-- Knoppen -->
     <div class="controls">
       <button id="next-btn" class="btn" disabled>Volgend Niveau ➔</button>
     </div>

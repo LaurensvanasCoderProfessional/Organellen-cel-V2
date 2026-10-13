@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cel-Trainer: Plantencel</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Forceer de browser om de nieuwste CSS in te laden -->
+  <link rel="stylesheet" href="style.css?versie=2">
 </head>
 <body>
 
@@ -128,7 +129,8 @@
         <li>Er zijn <strong>3 niveaus</strong> met steeds wisselende organellen.</li>
         <li>Sleep de naam naar de stip, of tik eerst op de naam en dan op de stip.</li>
       </ul>
-      <button class="btn" id="start-btn">Start Spel!</button>
+      <!-- DE OPLOSSING: De knop roept nu direct de JavaScript functie aan! -->
+      <button class="btn" id="start-btn" onclick="startSpel()">Start Spel!</button>
     </div>
   </div>
 
@@ -141,6 +143,7 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Forceer de browser om de nieuwste JS in te laden -->
+  <script src="script.js?versie=2"></script>
 </body>
 </html>

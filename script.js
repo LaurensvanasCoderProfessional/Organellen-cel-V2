@@ -1,44 +1,18 @@
-// Database van alle organellen met Educatieve Weetjes en Tips!
+// Database van alle organellen
 const allOrganelles = [
-  { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%', 
-    hint: 'Kijk helemaal aan de buitenste groene rand.', 
-    fact: 'De celwand zorgt voor stevigheid en bescherming van de plant.' },
-  { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%', 
-    hint: 'Dit is het vliesje direct aan de binnenkant van de celwand.', 
-    fact: 'Het celmembraan bepaalt welke stoffen de cel in en uit gaan.' },
-  { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%', 
-    hint: 'Dit is de vloeistof die de hele cel opvult.', 
-    fact: 'Hierin zweven alle organellen en vinden veel reacties plaats.' },
-  { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%', 
-    hint: 'Zoek naar de gigantische blauwe blaas in het midden.', 
-    fact: 'De vacuole slaat water op en zorgt voor de druk (turgor) die de plant rechtop houdt.' },
-  { id: 'celkern', name: 'Celkern', top: '45%', left: '25%', 
-    hint: 'Dit is de grote paarse bol.', 
-    fact: 'De celkern is de baas van de cel en bevat al het DNA.' },
-  { id: 'nucleolus', name: 'Nucleolus', top: '43%', left: '23%', 
-    hint: 'Dit is het kleine gele bolletje binnenin de celkern.', 
-    fact: 'In de nucleolus worden de ribosomen (eiwitfabriekjes) geproduceerd.' },
-  { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%', 
-    hint: 'Zoek de groene, ovale structuren met streepjes erin.', 
-    fact: 'Hier vindt fotosynthese plaats: de plant maakt zijn eigen suiker met zonlicht!' },
-  { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%', 
-    hint: 'Deze lijken op rode/oranje boontjes met een geplooide binnenkant.', 
-    fact: 'Dit zijn de energiefabrieken; ze verbranden suiker om energie vrij te maken.' },
-  { id: 'er', name: 'ER', top: '60%', left: '17%', 
-    hint: 'Zoek het gele, geplooide membraan rondom de celkern.', 
-    fact: 'Het Endoplasmatisch Reticulum helpt bij het transport van eiwitten.' },
-  { id: 'ribosoom', name: 'Ribosoom', top: '56%', left: '36%', 
-    hint: 'Let op de kleine zwarte stipjes op het gele ER of in de vloeistof.', 
-    fact: 'Ribosomen zijn de kleine eiwitfabriekjes van de cel.' },
-  { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%', 
-    hint: 'Dit oranje organel lijkt een beetje op een wifi-symbool of gestapelde pannenkoeken.', 
-    fact: 'Het Golgi-systeem verpakt stoffen en stuurt ze naar de juiste plek in (of buiten) de cel.' },
-  { id: 'amyloplast', name: 'Amyloplast', top: '81%', left: '14%', 
-    hint: 'Zoek de paars/grijze ovaal links onderin (zetmeelkorrel).', 
-    fact: 'Planten slaan hier reservevoedsel (zetmeel) in op, zoals in een aardappel.' },
-  { id: 'peroxisoom', name: 'Peroxisoom', top: '18%', left: '38%', 
-    hint: 'Dit is een klein, groen bolletje apart van de rest.', 
-    fact: 'Peroxisomen ruimen giftige afvalstoffen in de cel op.' }
+  { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%', hint: 'Buitenste groene rand.', fact: 'Zorgt voor stevigheid.' },
+  { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%', hint: 'Vliesje aan de binnenkant van de celwand.', fact: 'Bepaalt wat er in en uit gaat.' },
+  { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%', hint: 'De vloeistof in de cel.', fact: 'Hier zweven alle organellen in.' },
+  { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%', hint: 'Grote blauwe blaas.', fact: 'Slaat water op en zorgt voor druk.' },
+  { id: 'celkern', name: 'Celkern', top: '45%', left: '25%', hint: 'De grote paarse bol.', fact: 'Bevat al het DNA (de baas).' },
+  { id: 'nucleolus', name: 'Nucleolus', top: '43%', left: '23%', hint: 'Gele bolletje in de celkern.', fact: 'Maakt ribosomen aan.' },
+  { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%', hint: 'Groene ovalen met streepjes.', fact: 'Zorgt voor fotosynthese.' },
+  { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%', hint: 'Rode boontjes met plooien.', fact: 'De energiefabriekjes van de cel.' },
+  { id: 'er', name: 'ER', top: '60%', left: '17%', hint: 'Gele geplooide membraan rond de kern.', fact: 'Transporteert eiwitten.' },
+  { id: 'ribosoom', name: 'Ribosoom', top: '56%', left: '36%', hint: 'Kleine zwarte stipjes.', fact: 'Kleine eiwitfabriekjes.' },
+  { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%', hint: 'Oranje gestapelde pannenkoeken.', fact: 'Verpakt stoffen.' },
+  { id: 'amyloplast', name: 'Amyloplast', top: '81%', left: '14%', hint: 'Grijze bol links onder (zetmeel).', fact: 'Slaat reservestoffen op.' },
+  { id: 'peroxisoom', name: 'Peroxisoom', top: '18%', left: '38%', hint: 'Klein groen bolletje.', fact: 'Ruimt afvalstoffen op.' }
 ];
 
 let generatedLevels = [];
@@ -50,190 +24,163 @@ let currentItems = [];
 let completedCount = 0;
 let selectedLabelId = null;
 
-// Pas uitvoeren als de HTML-pagina 100% geladen is
-window.addEventListener('DOMContentLoaded', () => {
-  const startModal = document.getElementById('start-modal');
-  const endModal = document.getElementById('end-modal');
-  const dropZonesContainer = document.getElementById('drop-zones-container');
-  const labelsContainer = document.getElementById('labels-container');
-  const feedbackMessage = document.getElementById('feedback-message');
-  const scoreDisplay = document.getElementById('score-display');
-  const levelDisplay = document.getElementById('level-display');
-  const timerDisplay = document.getElementById('timer-display');
-  const progressBar = document.getElementById('progress-bar');
-  const nextBtn = document.getElementById('next-btn');
-  const startBtn = document.getElementById('start-btn');
+// Functie die wordt aangeroepen als je op Start klikt!
+function startSpel() {
+  document.getElementById('start-modal').style.display = 'none';
+  generateRandomLevels();
+  startTimer();
+  loadLevel(currentLevel);
+}
 
-  if (startBtn) {
-    startBtn.addEventListener('click', () => {
-      startModal.classList.remove('active');
-      generateRandomLevels();
-      startTimer();
-      loadLevel(currentLevel);
+function nextLevel() {
+  if (currentLevel < generatedLevels.length - 1) {
+    currentLevel++;
+    loadLevel(currentLevel);
+  } else {
+    showEndModal('Geweldig! Je hebt het gehaald!');
+  }
+}
+
+function generateRandomLevels() {
+  const shuffled = [...allOrganelles].sort(() => Math.random() - 0.5);
+  generatedLevels = [ shuffled.slice(0, 4), shuffled.slice(4, 8), shuffled.slice(8, 13) ];
+}
+
+function loadLevel(levelIdx) {
+  completedCount = 0;
+  selectedLabelId = null;
+  document.getElementById('next-btn').disabled = true;
+  document.getElementById('drop-zones-container').innerHTML = '';
+  document.getElementById('labels-container').innerHTML = '';
+
+  currentItems = generatedLevels[levelIdx];
+  document.getElementById('level-display').textContent = `${levelIdx + 1} / 3`;
+  updateProgress();
+  setFeedback('Lees de namen en zoek de juiste plek in de plantencel!', '');
+
+  currentItems.forEach(item => {
+    const zone = document.createElement('div');
+    zone.classList.add('drop-zone');
+    zone.style.top = item.top;
+    zone.style.left = item.left;
+    zone.dataset.id = item.id;
+    zone.textContent = '?';
+
+    zone.addEventListener('dragover', e => e.preventDefault());
+    zone.addEventListener('dragenter', () => zone.classList.add('drag-over'));
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', handleDrop);
+    zone.addEventListener('click', () => handleZoneClick(zone));
+
+    document.getElementById('drop-zones-container').appendChild(zone);
+  });
+
+  const shuffledLabels = [...currentItems].sort(() => Math.random() - 0.5);
+  shuffledLabels.forEach(item => {
+    const label = document.createElement('div');
+    label.classList.add('draggable-label');
+    label.draggable = true;
+    label.dataset.id = item.id;
+    label.textContent = item.name;
+
+    label.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', item.id);
+      selectLabel(item.id, label);
     });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (currentLevel < generatedLevels.length - 1) {
-        currentLevel++;
-        loadLevel(currentLevel);
-      } else {
-        showEndModal('Geweldig! Je hebt het gehaald!');
-      }
+    label.addEventListener('click', () => {
+      if (!label.classList.contains('disabled')) selectLabel(item.id, label);
     });
-  }
 
-  function generateRandomLevels() {
-    const shuffled = [...allOrganelles].sort(() => Math.random() - 0.5);
-    generatedLevels = [
-      shuffled.slice(0, 4),
-      shuffled.slice(4, 8),
-      shuffled.slice(8, 13)
-    ];
-  }
+    document.getElementById('labels-container').appendChild(label);
+  });
+}
 
-  function loadLevel(levelIdx) {
-    completedCount = 0;
+function selectLabel(id, el) {
+  document.querySelectorAll('.draggable-label').forEach(l => l.classList.remove('selected'));
+  selectedLabelId = id;
+  el.classList.add('selected');
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  const zone = e.currentTarget;
+  zone.classList.remove('drag-over');
+  const draggedId = e.dataTransfer.getData('text/plain');
+  checkMatch(draggedId, zone);
+}
+
+function handleZoneClick(zone) {
+  if (zone.classList.contains('filled')) return;
+  if (!selectedLabelId) {
+    setFeedback('Selecteer eerst een naam uit het rijtje!', 'wrong');
+    return;
+  }
+  checkMatch(selectedLabelId, zone);
+}
+
+function checkMatch(labelId, zone) {
+  if (zone.classList.contains('filled')) return;
+  const targetId = zone.dataset.id;
+  const targetData = currentItems.find(i => i.id === targetId);
+  const guessedData = allOrganelles.find(i => i.id === labelId);
+
+  if (labelId === targetId) {
+    zone.textContent = '✓ ' + targetData.name;
+    zone.classList.add('filled');
+    const labelEl = document.querySelector(`.draggable-label[data-id="${labelId}"]`);
+    if (labelEl) {
+      labelEl.classList.add('disabled');
+      labelEl.classList.remove('selected');
+    }
     selectedLabelId = null;
-    if (nextBtn) nextBtn.disabled = true;
-    if (dropZonesContainer) dropZonesContainer.innerHTML = '';
-    if (labelsContainer) labelsContainer.innerHTML = '';
-
-    currentItems = generatedLevels[levelIdx];
-    if (levelDisplay) levelDisplay.textContent = `${levelIdx + 1} / 3`;
+    score += 10;
+    document.getElementById('score-display').textContent = score;
+    completedCount++;
+    setFeedback(`Juist! ${targetData.fact}`, 'correct');
     updateProgress();
 
-    setFeedback('Lees de namen en zoek de juiste plek in de plantencel!', '');
-
-    currentItems.forEach(item => {
-      const zone = document.createElement('div');
-      zone.classList.add('drop-zone');
-      zone.style.top = item.top;
-      zone.style.left = item.left;
-      zone.dataset.id = item.id;
-      zone.textContent = '?';
-
-      zone.addEventListener('dragover', e => e.preventDefault());
-      zone.addEventListener('dragenter', () => zone.classList.add('drag-over'));
-      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
-      zone.addEventListener('drop', handleDrop);
-      zone.addEventListener('click', () => handleZoneClick(zone));
-
-      dropZonesContainer.appendChild(zone);
-    });
-
-    const shuffledLabels = [...currentItems].sort(() => Math.random() - 0.5);
-    shuffledLabels.forEach(item => {
-      const label = document.createElement('div');
-      label.classList.add('draggable-label');
-      label.draggable = true;
-      label.dataset.id = item.id;
-      label.textContent = item.name;
-
-      label.addEventListener('dragstart', e => {
-        e.dataTransfer.setData('text/plain', item.id);
-        selectLabel(item.id, label);
-      });
-      label.addEventListener('click', () => {
-        if (!label.classList.contains('disabled')) selectLabel(item.id, label);
-      });
-
-      labelsContainer.appendChild(label);
-    });
-  }
-
-  function selectLabel(id, el) {
-    document.querySelectorAll('.draggable-label').forEach(l => l.classList.remove('selected'));
-    selectedLabelId = id;
-    el.classList.add('selected');
-  }
-
-  function handleDrop(e) {
-    e.preventDefault();
-    const zone = e.currentTarget;
-    zone.classList.remove('drag-over');
-    const draggedId = e.dataTransfer.getData('text/plain');
-    checkMatch(draggedId, zone);
-  }
-
-  function handleZoneClick(zone) {
-    if (zone.classList.contains('filled')) return;
-    if (!selectedLabelId) {
-      setFeedback('Selecteer eerst een naam uit het rijtje!', 'wrong');
-      return;
+    if (completedCount === currentItems.length) {
+      setTimeout(() => setFeedback('🎉 Niveau compleet! Ga door naar de volgende.', 'correct'), 1000);
+      document.getElementById('next-btn').disabled = false;
+      document.getElementById('next-btn').onclick = nextLevel;
     }
-    checkMatch(selectedLabelId, zone);
+  } else {
+    score = Math.max(0, score - 2);
+    document.getElementById('score-display').textContent = score;
+    setFeedback(`Fout! Tip voor ${guessedData.name}: ${guessedData.hint}`, 'wrong');
   }
+}
 
-  function checkMatch(labelId, zone) {
-    if (zone.classList.contains('filled')) return;
+function setFeedback(msg, type) {
+  const fb = document.getElementById('feedback-message');
+  if (fb) {
+    fb.textContent = msg;
+    fb.className = `feedback-message ${type}`;
+  }
+}
 
-    const targetId = zone.dataset.id;
-    const targetData = currentItems.find(i => i.id === targetId);
-    const guessedData = allOrganelles.find(i => i.id === labelId);
+function updateProgress() {
+  const pct = (completedCount / currentItems.length) * 100;
+  document.getElementById('progress-bar').style.width = `${pct}%`;
+}
 
-    if (labelId === targetId) {
-      zone.textContent = '✓ ' + targetData.name;
-      zone.classList.add('filled');
-
-      const labelEl = document.querySelector(`.draggable-label[data-id="${labelId}"]`);
-      if (labelEl) {
-        labelEl.classList.add('disabled');
-        labelEl.classList.remove('selected');
-      }
-      
-      selectedLabelId = null;
-      score += 10;
-      if (scoreDisplay) scoreDisplay.textContent = score;
-      completedCount++;
-
-      setFeedback(`Juist! ${targetData.fact}`, 'correct');
-      updateProgress();
-
-      if (completedCount === currentItems.length) {
-        setTimeout(() => setFeedback('🎉 Niveau compleet! Ga door naar de volgende.', 'correct'), 2000);
-        if (nextBtn) nextBtn.disabled = false;
-      }
-    } else {
-      score = Math.max(0, score - 2);
-      if (scoreDisplay) scoreDisplay.textContent = score;
-      setFeedback(`Fout! Tip voor ${guessedData.name}: ${guessedData.hint}`, 'wrong');
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    const mins = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
+    const secs = (timeRemaining % 60).toString().padStart(2, '0');
+    document.getElementById('timer-display').textContent = `${mins}:${secs}`;
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      showEndModal('De tijd is om!');
     }
-  }
+  }, 1000);
+}
 
-  function setFeedback(msg, type) {
-    if (feedbackMessage) {
-      feedbackMessage.textContent = msg;
-      feedbackMessage.className = `feedback-message ${type}`;
-    }
-  }
-
-  function updateProgress() {
-    const pct = (completedCount / currentItems.length) * 100;
-    if (progressBar) progressBar.style.width = `${pct}%`;
-  }
-
-  function startTimer() {
-    timerInterval = setInterval(() => {
-      timeRemaining--;
-      const mins = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
-      const secs = (timeRemaining % 60).toString().padStart(2, '0');
-      if (timerDisplay) timerDisplay.textContent = `${mins}:${secs}`;
-
-      if (timeRemaining <= 0) {
-        clearInterval(timerInterval);
-        showEndModal('De tijd is om!');
-      }
-    }, 1000);
-  }
-
-  function showEndModal(title) {
-    clearInterval(timerInterval);
-    if (endModal) {
-      endModal.querySelector('h2').textContent = title;
-      document.getElementById('final-stats').textContent = `Je eindscore is: ${score} punten!`;
-      endModal.classList.add('active');
-    }
-  }
-});
+function showEndModal(title) {
+  clearInterval(timerInterval);
+  const modal = document.getElementById('end-modal');
+  modal.querySelector('h2').textContent = title;
+  document.getElementById('final-stats').textContent = `Je eindscore is: ${score} punten!`;
+  modal.classList.add('active');
+}

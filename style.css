@@ -1,280 +1,234 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+// Database van alle organellen met Educatieve Weetjes en Tips!
+const allOrganelles = [
+  { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%', 
+    hint: 'Kijk helemaal aan de buitenste groene rand.', 
+    fact: 'De celwand zorgt voor stevigheid en bescherming van de plant.' },
+  { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%', 
+    hint: 'Dit is het vliesje direct aan de binnenkant van de celwand.', 
+    fact: 'Het celmembraan bepaalt welke stoffen de cel in en uit gaan.' },
+  { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%', 
+    hint: 'Dit is de vloeistof die de hele cel opvult.', 
+    fact: 'Hierin zweven alle organellen en vinden veel reacties plaats.' },
+  { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%', 
+    hint: 'Zoek naar de gigantische blauwe blaas in het midden.', 
+    fact: 'De vacuole slaat water op en zorgt voor de druk (turgor) die de plant rechtop houdt.' },
+  { id: 'celkern', name: 'Celkern', top: '45%', left: '25%', 
+    hint: 'Dit is de grote paarse bol.', 
+    fact: 'De celkern is de baas van de cel en bevat al het DNA.' },
+  { id: 'nucleolus', name: 'Nucleolus', top: '43%', left: '23%', 
+    hint: 'Dit is het kleine gele bolletje binnenin de celkern.', 
+    fact: 'In de nucleolus worden de ribosomen (eiwitfabriekjes) geproduceerd.' },
+  { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%', 
+    hint: 'Zoek de groene, ovale structuren met streepjes erin.', 
+    fact: 'Hier vindt fotosynthese plaats: de plant maakt zijn eigen suiker met zonlicht!' },
+  { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%', 
+    hint: 'Deze lijken op rode/oranje boontjes met een geplooide binnenkant.', 
+    fact: 'Dit zijn de energiefabrieken; ze verbranden suiker om energie vrij te maken.' },
+  { id: 'er', name: 'ER', top: '60%', left: '17%', 
+    hint: 'Zoek het gele, geplooide membraan rondom de celkern.', 
+    fact: 'Het Endoplasmatisch Reticulum helpt bij het transport van eiwitten.' },
+  { id: 'ribosoom', name: 'Ribosoom', top: '56%', left: '36%', 
+    hint: 'Let op de kleine zwarte stipjes op het gele ER of in de vloeistof.', 
+    fact: 'Ribosomen zijn de kleine eiwitfabriekjes van de cel.' },
+  { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%', 
+    hint: 'Dit oranje organel lijkt een beetje op een wifi-symbool of gestapelde pannenkoeken.', 
+    fact: 'Het Golgi-systeem verpakt stoffen en stuurt ze naar de juiste plek in (of buiten) de cel.' },
+  { id: 'amyloplast', name: 'Amyloplast', top: '81%', left: '14%', 
+    hint: 'Zoek de paars/grijze ovaal links onderin (zetmeelkorrel).', 
+    fact: 'Planten slaan hier reservevoedsel (zetmeel) in op, zoals in een aardappel.' },
+  { id: 'peroxisoom', name: 'Peroxisoom', top: '18%', left: '38%', 
+    hint: 'Dit is een klein, groen bolletje apart van de rest.', 
+    fact: 'Peroxisomen ruimen giftige afvalstoffen in de cel op.' }
+];
+
+let generatedLevels = [];
+let currentLevel = 0;
+let score = 0;
+let timeRemaining = 300;
+let timerInterval = null;
+let currentItems = [];
+let completedCount = 0;
+let selectedLabelId = null;
+
+// DOM Elementen
+const startModal = document.getElementById('start-modal');
+const endModal = document.getElementById('end-modal');
+const dropZonesContainer = document.getElementById('drop-zones-container');
+const labelsContainer = document.getElementById('labels-container');
+const feedbackMessage = document.getElementById('feedback-message');
+const scoreDisplay = document.getElementById('score-display');
+const levelDisplay = document.getElementById('level-display');
+const timerDisplay = document.getElementById('timer-display');
+const progressBar = document.getElementById('progress-bar');
+const nextBtn = document.getElementById('next-btn');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  startModal.classList.remove('active');
+  generateRandomLevels();
+  startTimer();
+  loadLevel(currentLevel);
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentLevel < generatedLevels.length - 1) {
+    currentLevel++;
+    loadLevel(currentLevel);
+  } else {
+    showEndModal('Geweldig! Je hebt het gehaald!');
+  }
+});
+
+// Functie voor replayability: deelt alle 13 organellen willekeurig in 3 levels in
+function generateRandomLevels() {
+  const shuffled = [...allOrganelles].sort(() => Math.random() - 0.5);
+  // Level 1 (4 items), Level 2 (4 items), Level 3 (5 items)
+  generatedLevels = [
+    shuffled.slice(0, 4),
+    shuffled.slice(4, 8),
+    shuffled.slice(8, 13)
+  ];
 }
 
-body {
-  background-color: #f2f7f2;
-  color: #2c3e50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+function loadLevel(levelIdx) {
+  completedCount = 0;
+  selectedLabelId = null;
+  nextBtn.disabled = true;
+  dropZonesContainer.innerHTML = '';
+  labelsContainer.innerHTML = '';
+
+  currentItems = generatedLevels[levelIdx];
+  levelDisplay.textContent = `${levelIdx + 1} / 3`;
+  updateProgress();
+
+  setFeedback('Lees de namen en zoek de juiste plek in de plantencel!', '');
+
+  // Render drop zones
+  currentItems.forEach(item => {
+    const zone = document.createElement('div');
+    zone.classList.add('drop-zone');
+    zone.style.top = item.top;
+    zone.style.left = item.left;
+    zone.dataset.id = item.id;
+    zone.textContent = '?';
+
+    zone.addEventListener('dragover', e => e.preventDefault());
+    zone.addEventListener('dragenter', () => zone.classList.add('drag-over'));
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', handleDrop);
+    zone.addEventListener('click', () => handleZoneClick(zone));
+
+    dropZonesContainer.appendChild(zone);
+  });
+
+  // Render labels (geschud)
+  const shuffledLabels = [...currentItems].sort(() => Math.random() - 0.5);
+  shuffledLabels.forEach(item => {
+    const label = document.createElement('div');
+    label.classList.add('draggable-label');
+    label.draggable = true;
+    label.dataset.id = item.id;
+    label.textContent = item.name;
+
+    label.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', item.id);
+      selectLabel(item.id, label);
+    });
+    label.addEventListener('click', () => {
+      if (!label.classList.contains('disabled')) selectLabel(item.id, label);
+    });
+
+    labelsContainer.appendChild(label);
+  });
 }
 
-header {
-  text-align: center;
-  margin-bottom: 20px;
+function selectLabel(id, el) {
+  document.querySelectorAll('.draggable-label').forEach(l => l.classList.remove('selected'));
+  selectedLabelId = id;
+  el.classList.add('selected');
 }
 
-header h1 {
-  color: #1e5631;
-  font-size: 2rem;
-  margin-bottom: 5px;
+function handleDrop(e) {
+  e.preventDefault();
+  const zone = e.currentTarget;
+  zone.classList.remove('drag-over');
+  const draggedId = e.dataTransfer.getData('text/plain');
+  checkMatch(draggedId, zone);
 }
 
-header p {
-  color: #4a7c59;
+function handleZoneClick(zone) {
+  if (zone.classList.contains('filled')) return;
+  if (!selectedLabelId) {
+    setFeedback('Selecteer eerst een naam uit het rijtje!', 'wrong');
+    return;
+  }
+  checkMatch(selectedLabelId, zone);
 }
 
-.game-container {
-  background: white;
-  width: 100%;
-  max-width: 960px;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+function checkMatch(labelId, zone) {
+  if (zone.classList.contains('filled')) return;
+
+  const targetId = zone.dataset.id;
+  const targetData = currentItems.find(i => i.id === targetId);
+  const guessedData = allOrganelles.find(i => i.id === labelId);
+
+  if (labelId === targetId) {
+    zone.textContent = '✓ ' + targetData.name;
+    zone.classList.add('filled');
+
+    const labelEl = document.querySelector(`.draggable-label[data-id="${labelId}"]`);
+    if (labelEl) {
+      labelEl.classList.add('disabled');
+      labelEl.classList.remove('selected');
+    }
+    
+    selectedLabelId = null;
+    score += 10;
+    scoreDisplay.textContent = score;
+    completedCount++;
+
+    // Educatieve diepgang: Toon het weetje
+    setFeedback(`Juist! ${targetData.fact}`, 'correct');
+    updateProgress();
+
+    if (completedCount === currentItems.length) {
+      setTimeout(() => setFeedback('🎉 Niveau compleet! Ga door naar de volgende.', 'correct'), 2000);
+      nextBtn.disabled = false;
+    }
+  } else {
+    score = Math.max(0, score - 2);
+    scoreDisplay.textContent = score;
+    // Educatieve diepgang: Toon een hint voor het orgenel dat de leerling zocht
+    setFeedback(`Fout! Tip voor ${guessedData.name}: ${guessedData.hint}`, 'wrong');
+  }
 }
 
-.status-bar {
-  display: flex;
-  justify-content: space-around;
-  background: #e8f5e9;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #1b5e20;
-  margin-bottom: 12px;
+function setFeedback(msg, type) {
+  feedbackMessage.textContent = msg;
+  feedbackMessage.className = `feedback-message ${type}`;
 }
 
-.progress-container {
-  width: 100%;
-  height: 10px;
-  background: #e0e0e0;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 15px;
+function updateProgress() {
+  const pct = (completedCount / currentItems.length) * 100;
+  progressBar.style.width = `${pct}%`;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #2e7d32;
-  transition: width 0.4s ease;
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    const mins = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
+    const secs = (timeRemaining % 60).toString().padStart(2, '0');
+    timerDisplay.textContent = `${mins}:${secs}`;
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      showEndModal('De tijd is om!');
+    }
+  }, 1000);
 }
 
-.feedback-message {
-  text-align: center;
-  font-weight: bold;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  background: #f8f9fa;
-  border: 1px solid #ddd;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
+function showEndModal(title) {
+  clearInterval(timerInterval);
+  endModal.querySelector('h2').textContent = title;
+  document.getElementById('final-stats').textContent = `Je eindscore is: ${score} punten!`;
+  endModal.classList.add('active');
 }
-
-.feedback-message.correct {
-  background: #d4edda;
-  color: #155724;
-  border-color: #c3e6cb;
-}
-
-.feedback-message.wrong {
-  background: #f8d7da;
-  color: #721c24;
-  border-color: #f5c6cb;
-}
-
-.main-play-area {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.cell-diagram-container {
-  position: relative;
-  flex: 3;
-  min-width: 340px;
-  background: #ffffff;
-  border: 2px solid #a5d6a7;
-  border-radius: 12px;
-  padding: 10px;
-  overflow: hidden;
-}
-
-.cell-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* SVG Plantencel Styling */
-.svg-cell-wall { fill: #81c784; stroke: #2e7d32; stroke-width: 8; }
-.svg-cell-membrane { fill: #dce775; stroke: #9e9d24; stroke-width: 4; }
-.svg-cytoplasm { fill: #f1f8e9; }
-.svg-vacuole { fill: #81d4fa; stroke: #0288d1; stroke-width: 3; opacity: 0.85; }
-.svg-nucleus { fill: #ab47bc; stroke: #4a148c; stroke-width: 4; }
-.svg-nucleolus { fill: #fbc02d; stroke: #f57f17; stroke-width: 2; }
-
-/* ER = Opvallende gele geplooide membraanlaag zoals op het voorbeeld plaatje */
-.svg-er-bg { fill: #fdd835; stroke: #f57f17; stroke-width: 4; }
-.svg-er-line { fill: none; stroke: #f57f17; stroke-width: 3; }
-
-/* Ribosomen = Duidelijke zwarte/donkere puntjes op het geel en in de cel */
-.svg-ribosome { fill: #111111; stroke: #000000; stroke-width: 0.5; }
-
-.svg-chloroplast { fill: #4caf50; stroke: #1b5e20; stroke-width: 3; }
-.svg-chloroplast-line { stroke: #1b5e20; stroke-width: 2; }
-.svg-mitochondria { fill: #ef5350; stroke: #b71c1c; stroke-width: 3; }
-.svg-mitochondria-inner { fill: none; stroke: #ffffff; stroke-width: 2.5; }
-.svg-golgi { fill: none; stroke: #ff9800; stroke-width: 6; stroke-linecap: round; }
-.svg-amyloplast { fill: #d1c4e9; stroke: #7e57c2; stroke-width: 2; }
-.svg-peroxisome { fill: #81c784; stroke: #2e7d32; stroke-width: 2; }
-
-/* Kleine Ronde Drop Zones */
-.drop-zone {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2.5px dashed #1b5e20;
-  background: rgba(255, 255, 255, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
-  font-weight: bold;
-  color: #1b5e20;
-  cursor: pointer;
-  transform: translate(-50%, -50%);
-  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-  z-index: 10;
-}
-
-.drop-zone:hover, .drop-zone.drag-over {
-  background: #c8e6c9;
-  transform: translate(-50%, -50%) scale(1.3);
-  border-style: solid;
-}
-
-.drop-zone.filled {
-  width: auto;
-  height: auto;
-  padding: 4px 10px;
-  border-radius: 16px;
-  border: 2px solid #2e7d32;
-  background: #e8f5e9;
-  color: #1b5e20;
-  font-size: 0.82rem;
-  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.draggable-container {
-  flex: 1;
-  min-width: 220px;
-  background: #f9fbe7;
-  border: 1px solid #c5e1a5;
-  border-radius: 12px;
-  padding: 15px;
-}
-
-.draggable-container h3 {
-  font-size: 1.1rem;
-  margin-bottom: 14px;
-  color: #33691e;
-  text-align: center;
-}
-
-.labels-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.draggable-label {
-  padding: 10px 14px;
-  background: #2e7d32;
-  color: white;
-  font-weight: bold;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  cursor: grab;
-  text-align: center;
-  user-select: none;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.12);
-  transition: transform 0.15s ease, background-color 0.2s ease;
-}
-
-.draggable-label:hover {
-  background: #1b5e20;
-}
-
-.draggable-label.selected {
-  outline: 3px solid #fbc02d;
-  background: #1b5e20;
-}
-
-.draggable-label.disabled {
-  background: #cfd8dc;
-  color: #78909c;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.controls {
-  margin-top: 20px;
-  text-align: right;
-}
-
-.btn {
-  background: #2e7d32;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn:hover:not(:disabled) {
-  background: #1b5e20;
-}
-
-.btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-}
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 420px;
-  width: 90%;
-}
-
-.modal-content h2 { margin-bottom: 10px; color: #1e5631; }
-.modal-content p { margin-bottom: 20px; font-size: 1.1rem; }

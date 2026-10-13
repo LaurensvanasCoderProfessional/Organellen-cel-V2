@@ -1,18 +1,18 @@
-// Database van alle organellen
+// Database van alle organellen met aangepaste (verschoven) coördinaten
 const allOrganelles = [
   { id: 'celwand', name: 'Celwand', top: '3.5%', left: '45%', hint: 'Buitenste groene rand.', fact: 'Zorgt voor stevigheid.' },
   { id: 'celmembraan', name: 'Celmembraan', top: '7.5%', left: '45%', hint: 'Vliesje aan de binnenkant van de celwand.', fact: 'Bepaalt wat er in en uit gaat.' },
   { id: 'cytoplasma', name: 'Cytoplasma', top: '78%', left: '22%', hint: 'De vloeistof in de cel.', fact: 'Hier zweven alle organellen in.' },
   { id: 'vacuole', name: 'Vacuole', top: '50%', left: '62%', hint: 'Grote blauwe blaas.', fact: 'Slaat water op en zorgt voor druk.' },
-  { id: 'celkern', name: 'Celkern', top: '45%', left: '25%', hint: 'De grote paarse bol.', fact: 'Bevat al het DNA (de baas).' },
-  { id: 'nucleolus', name: 'Nucleolus', top: '43%', left: '23%', hint: 'Gele bolletje in de celkern.', fact: 'Maakt ribosomen aan.' },
-  { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '68%', hint: 'Groene ovalen met streepjes.', fact: 'Zorgt voor fotosynthese.' },
-  { id: 'mitochondrion', name: 'Mitochondrion', top: '65%', left: '74%', hint: 'Rode boontjes met plooien.', fact: 'De energiefabriekjes van de cel.' },
-  { id: 'er', name: 'ER', top: '60%', left: '17%', hint: 'Gele geplooide membraan rond de kern.', fact: 'Transporteert eiwitten.' },
-  { id: 'ribosoom', name: 'Ribosoom', top: '56%', left: '36%', hint: 'Kleine zwarte stipjes.', fact: 'Kleine eiwitfabriekjes.' },
-  { id: 'golgi', name: 'Golgi-systeem', top: '82%', left: '72%', hint: 'Oranje gestapelde pannenkoeken.', fact: 'Verpakt stoffen.' },
-  { id: 'amyloplast', name: 'Amyloplast', top: '81%', left: '14%', hint: 'Grijze bol links onder (zetmeel).', fact: 'Slaat reservestoffen op.' },
-  { id: 'peroxisoom', name: 'Peroxisoom', top: '18%', left: '38%', hint: 'Klein groen bolletje.', fact: 'Ruimt afvalstoffen op.' }
+  { id: 'celkern', name: 'Celkern', top: '48%', left: '28%', hint: 'De grote paarse bol.', fact: 'Bevat al het DNA (de baas).' },
+  { id: 'nucleolus', name: 'Nucleolus', top: '38%', left: '20%', hint: 'Gele bolletje in de celkern.', fact: 'Maakt ribosomen aan.' },
+  { id: 'chloroplast', name: 'Bladgroenkorrel', top: '18%', left: '74%', hint: 'Groene ovalen met streepjes.', fact: 'Zorgt voor fotosynthese.' },
+  { id: 'mitochondrion', name: 'Mitochondrion', top: '70%', left: '80%', hint: 'Rode boontjes met plooien.', fact: 'De energiefabriekjes van de cel.' },
+  { id: 'er', name: 'ER', top: '62%', left: '12%', hint: 'Gele geplooide membraan rond de kern.', fact: 'Transporteert eiwitten.' },
+  { id: 'ribosoom', name: 'Ribosoom', top: '48%', left: '38%', hint: 'Kleine zwarte stipjes.', fact: 'Kleine eiwitfabriekjes.' },
+  { id: 'golgi', name: 'Golgi-systeem', top: '86%', left: '76%', hint: 'Oranje gestapelde pannenkoeken.', fact: 'Verpakt stoffen.' },
+  { id: 'amyloplast', name: 'Amyloplast', top: '85%', left: '18%', hint: 'Grijze bol links onder (zetmeel).', fact: 'Slaat reservestoffen op.' },
+  { id: 'peroxisoom', name: 'Peroxisoom', top: '14%', left: '32%', hint: 'Klein groen bolletje.', fact: 'Ruimt afvalstoffen op.' }
 ];
 
 let generatedLevels = [];
@@ -24,7 +24,6 @@ let currentItems = [];
 let completedCount = 0;
 let selectedLabelId = null;
 
-// Functie die wordt aangeroepen als je op Start klikt!
 function startSpel() {
   document.getElementById('start-modal').style.display = 'none';
   generateRandomLevels();

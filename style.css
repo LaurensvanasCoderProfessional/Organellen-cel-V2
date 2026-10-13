@@ -130,14 +130,14 @@ header p {
 .svg-amyloplast { fill: #d1c4e9 !important; stroke: #7e57c2 !important; stroke-width: 2; }
 .svg-peroxisome { fill: #81c784 !important; stroke: #2e7d32 !important; stroke-width: 2; }
 
-/* Kleinere, semi-transparante Drop Zones zodat het organel eronder zichtbaar blijft */
+/* Kleinere, semi-transparante Drop Zones (Bolletjes) */
 .drop-zone {
   position: absolute;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   border: 2px dashed #1b5e20;
-  background: rgba(255, 255, 255, 0.65); /* Semi-transparant */
+  background: rgba(255, 255, 255, 0.65); /* Dit zorgt voor de transparantie! */
   backdrop-filter: blur(1px);
   display: flex;
   align-items: center;

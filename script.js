@@ -40,6 +40,26 @@ function nextLevel() {
   }
 }
 
+// Nieuwe functie: Reset de hele game naar de beginstand
+function resetGame() {
+  clearInterval(timerInterval);
+  
+  score = 0;
+  document.getElementById('score-display').textContent = score;
+  
+  timeRemaining = 300;
+  
+  currentLevel = 0;
+  generateRandomLevels();
+  
+  startTimer();
+  
+  // Herlaad het level. Dit maakt ook direct het bord schoon.
+  loadLevel(currentLevel);
+  
+  setFeedback('Het spel is gereset! Zoek de juiste plek in de plantencel.', '');
+}
+
 function generateRandomLevels() {
   const shuffled = [...allOrganelles].sort(() => Math.random() - 0.5);
   generatedLevels = [ shuffled.slice(0, 4), shuffled.slice(4, 8), shuffled.slice(8, 13) ];

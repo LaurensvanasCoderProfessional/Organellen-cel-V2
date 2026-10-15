@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cel-Trainer: Plantencel</title>
-  <!-- Versie 3 forceert de browser om de nieuwste styling in te laden -->
-  <link rel="stylesheet" href="style.css?versie=3">
+  <!-- Versie 4 voor de nieuwe reset functionaliteit -->
+  <link rel="stylesheet" href="style.css?versie=4">
 </head>
 <body>
 
@@ -114,7 +114,9 @@
       </div>
     </div>
 
+    <!-- Knoppen incl. nieuwe Resetknop -->
     <div class="controls">
+      <button id="reset-btn" class="btn btn-reset" onclick="resetGame()">↻ Spel Herstarten</button>
       <button id="next-btn" class="btn" disabled>Volgend Niveau ➔</button>
     </div>
   </div>
@@ -129,7 +131,6 @@
         <li>Er zijn <strong>3 niveaus</strong> met steeds wisselende organellen.</li>
         <li>Sleep de naam naar de stip, of tik eerst op de naam en dan op de stip.</li>
       </ul>
-      <!-- De knop roept nu direct de JavaScript functie aan -->
       <button class="btn" id="start-btn" onclick="startSpel()">Start Spel!</button>
     </div>
   </div>
@@ -143,7 +144,7 @@
     </div>
   </div>
 
-  <!-- Versie 3 forceert de browser om de nieuwste JS in te laden -->
-  <script src="script.js?versie=3"></script>
+  <!-- Versie 4 voor de nieuwe JS functionaliteit -->
+  <script src="script.js?versie=4"></script>
 </body>
 </html>

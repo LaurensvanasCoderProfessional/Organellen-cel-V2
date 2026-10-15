@@ -137,7 +137,7 @@ header p {
   height: 24px;
   border-radius: 50%;
   border: 2px dashed #1b5e20;
-  background: rgba(255, 255, 255, 0.65); /* Dit zorgt voor de transparantie! */
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(1px);
   display: flex;
   align-items: center;
@@ -208,6 +208,15 @@ header p {
   font-size: 1rem; font-weight: bold; border-radius: 8px; cursor: pointer;
 }
 .btn:disabled { background: #ccc; cursor: not-allowed; }
+
+/* Styling voor de nieuwe Resetknop */
+.btn-reset {
+  background: #f57c00; 
+  margin-right: 10px;
+}
+.btn-reset:hover {
+  background: #e65100;
+}
 
 /* Modals */
 .modal {
